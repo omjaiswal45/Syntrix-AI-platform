@@ -286,13 +286,3 @@ Contributions, issues and feature requests are welcome. Feel free to open an iss
 ## 📄 License
 
 MIT License — see [LICENSE](./LICENSE) for details.
-
----
-
-<div align="center">
-  <p>Built with ❤️ by <a href="https://github.com/arpitkasaudhan"><b>Arpit Kasaudhan</b></a></p>
-  <p>
-    <a href="https://github.com/arpitkasaudhan">GitHub</a> •
-    <a href="https://linkedin.com/in/arpitkasaudhan">LinkedIn</a>
-  </p>
-</div>"# Syntrix-AI-platform" 
