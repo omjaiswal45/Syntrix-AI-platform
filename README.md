@@ -1,288 +1,343 @@
-<h1 align="center">⚡ NexusAI — Full Stack Agentic AI Platform</h1>
+<h1 align="center">
+  <img src="assets/banner.png" alt="Syntrix-AI" width="100%">
+</h1>
+
+<h1 align="center">⚡ Syntrix-AI</h1>
+
+<h3 align="center">Full-Stack AI Agent Platform Generator</h3>
 
 <p align="center">
-  <i>A production-ready full stack platform with AI agents, RAG pipeline, real-time streaming, and enterprise-grade infrastructure — built from scratch.</i>
+  <i>An interactive CLI that generates production-ready FastAPI + Next.js projects with AI agents, RAG pipelines, WebSocket streaming, and 20+ enterprise integrations — configured exactly how you want.</i>
 </p>
 
 <p align="center">
+  <a href="https://pypi.org/project/fastapi-fullstack/"><img src="assets/btn-pip-install.svg" alt="pip install fastapi-fullstack"></a>
+  <a href="https://github.com/vstorm-co/full-stack-ai-agent-template#readme"><img src="assets/btn-documentation.svg" alt="Documentation"></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/pypi/v/fastapi-fullstack?color=009688&label=version" alt="PyPI version">
+  <img src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white" alt="FastAPI">
   <img src="https://img.shields.io/badge/Next.js_15-000000?logo=next.js&logoColor=white" alt="Next.js">
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white" alt="MongoDB">
-  <img src="https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white" alt="Redis">
-  <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" alt="Docker">
-  <img src="https://img.shields.io/badge/LangGraph-005A9C?logoColor=white" alt="LangGraph">
   <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License">
 </p>
 
 ---
 
-## 👋 About This Project
+## What It Does
 
-I built **NexusAI** because I wanted a single platform that combines everything I've been learning — full stack development with TypeScript and Python, agentic AI with LangGraph, real-time WebSocket communication, RAG pipelines, and production DevOps with Docker and Kubernetes.
+**Syntrix-AI** is a CLI code generator. Run one command, answer a few prompts, and get a complete, production-ready project — wired up and ready to run.
 
-Most AI projects I found online were either just a Python script calling an API, or a simple chatbot with no real backend. I wanted to build something that feels like a real production system — with proper authentication, background workers, observability, and a clean architecture.
-
-This is that project.
-
----
-
-## 🧠 What It Does
-
-NexusAI is a full stack AI agent platform where users can:
-
-- **Chat with AI agents** that can use tools (web search, database queries, file reading)
-- **Upload documents** and query them using RAG (Retrieval-Augmented Generation)
-- **Stream responses in real time** via WebSocket — no waiting for the full response
-- **Manage conversations** with full history persistence
-- **Monitor everything** — agent runs, API latency, token usage, errors
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────┐
-│              Frontend (Next.js 15)               │
-│   React 19 · TypeScript · Tailwind · Zustand    │
-└───────────────────┬─────────────────────────────┘
-                    │  REST + WebSocket
-                    ▼
-┌─────────────────────────────────────────────────┐
-│               Backend (FastAPI)                  │
-│                                                 │
-│  ┌──────────────────────────────────────────┐   │
-│  │           AI Agents (LangGraph)          │   │
-│  │  Planner → Tool Use → Critic → Response  │   │
-│  │  Tools: search · code · database · files │   │
-│  └──────────────────────────────────────────┘   │
-│                                                 │
-│  ┌──────────────────────────────────────────┐   │
-│  │            RAG Pipeline                  │   │
-│  │  Ingest → Chunk → Embed → Store → Search │   │
-│  └──────────────────────────────────────────┘   │
-│                                                 │
-│  Auth · Rate Limiting · Webhooks · Admin Panel  │
-│  Celery Workers · Prometheus · Sentry           │
-└────────┬──────────┬──────────┬──────────────────┘
-         │          │          │
-         ▼          ▼          ▼
-    PostgreSQL    Redis    Vector DB
-    MongoDB               (Qdrant/Chroma)
-```
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-| Technology | Purpose |
-|-----------|---------|
-| Next.js 15 + React 19 | UI framework with App Router |
-| TypeScript | Type safety across the entire frontend |
-| Tailwind CSS v4 | Styling |
-| Zustand | State management |
-| WebSocket client | Real-time streaming |
-
-### Backend
-| Technology | Purpose |
-|-----------|---------|
-| Python 3.11 + FastAPI | High-performance async API |
-| LangGraph + LangChain | Multi-agent orchestration |
-| Pydantic v2 | Data validation |
-| SQLAlchemy (async) | ORM for PostgreSQL |
-| Celery + Redis | Background task queue |
-| JWT + OAuth2 | Authentication |
-
-### Databases & Infrastructure
-| Technology | Purpose |
-|-----------|---------|
-| PostgreSQL | Primary relational database |
-| MongoDB | Document storage |
-| Redis | Caching, sessions, task queue |
-| Qdrant / ChromaDB | Vector database for RAG |
-| Docker + Kubernetes | Containerization and orchestration |
-| GitHub Actions | CI/CD pipeline |
-| Prometheus + Sentry | Monitoring and error tracking |
-
----
-
-## ✨ Key Features
-
-### 🤖 Multi-Agent AI System
-Built with LangGraph — agents follow a **Planner → Tool Use → Critic → Synthesizer** pipeline. Each agent can call tools autonomously, maintain memory across sessions, and stream tokens back to the frontend in real time.
-
-### 📄 RAG Pipeline
-Upload PDFs, DOCX, or plain text files. The system parses, chunks, embeds, and stores them in a vector database. Agents automatically search the knowledge base when answering questions.
-
-### ⚡ Real-time Streaming
-WebSocket-based streaming means users see tokens as they're generated — not a loading spinner for 10 seconds. Includes tool call visualization so users can see what the agent is doing.
-
-### 🔒 Production Auth
-JWT access tokens + refresh tokens, API key support, and Google OAuth2. HTTP-only cookies on the frontend. Role-based access control.
-
-### 📊 Observability
-Full tracing via Logfire (for PydanticAI) and LangSmith (for LangChain). Prometheus metrics endpoint. Sentry for error tracking. Every agent run, tool call, and LLM request is traced.
-
-### 🖥️ Admin Panel
-SQLAdmin panel with authentication — manage users, view database records, monitor background tasks via Celery Flower.
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Python 3.11+
-- Node.js 18+ (or Bun)
-- Docker + Docker Compose
-- An OpenAI or Anthropic API key
-
-### 1. Clone the repo
 ```bash
-git clone https://github.com/arpitkasaudhan/ai-fullstack-platform.git
-cd ai-fullstack-platform
+pip install fastapi-fullstack
+fastapi-fullstack
 ```
 
-### 2. Set up environment variables
+<p align="center">
+  <img src="assets/app_start.gif" alt="CLI demo" width="800">
+</p>
+
+The generated project includes everything you need from day one:
+
+- **FastAPI backend** with async database access, JWT auth, and structured routes
+- **AI agent** with WebSocket streaming and conversation persistence
+- **RAG pipeline** — upload documents, embed, and query via the agent
+- **Next.js 15 frontend** with dark/light mode, i18n, and real-time chat UI
+- **Docker Compose** with all infrastructure services pre-configured
+- **CI/CD** (GitHub Actions or GitLab CI) ready to push
+
+---
+
+## Preview
+
+<table>
+  <tr>
+    <td><img src="assets/landingpage.png" alt="Landing page"></td>
+    <td><img src="assets/new_login.png" alt="Login"></td>
+  </tr>
+  <tr>
+    <td><img src="assets/chat_view_dark.png" alt="Chat (dark)"></td>
+    <td><img src="assets/chat_view_light.png" alt="Chat (light)"></td>
+  </tr>
+  <tr>
+    <td><img src="assets/chatwithrag.png" alt="Chat with RAG"></td>
+    <td><img src="assets/ragdocuments.png" alt="RAG documents"></td>
+  </tr>
+  <tr>
+    <td><img src="assets/dashboard.png" alt="Dashboard"></td>
+    <td><img src="assets/admin.png" alt="Admin panel"></td>
+  </tr>
+</table>
+
+---
+
+## Installation
+
 ```bash
-cp .env.example .env
-# Edit .env and add your API keys
+# pip
+pip install fastapi-fullstack
+
+# uv (recommended)
+uv tool install fastapi-fullstack
 ```
 
-### 3. Start with Docker (easiest)
+**Requirements:** Python 3.11+
+
+---
+
+## Quick Start
+
+### Interactive wizard (recommended)
+
 ```bash
+fastapi-fullstack
+```
+
+Walks you through every option step-by-step and shows a summary before generating.
+
+### Direct creation
+
+```bash
+# Minimal project
+fastapi-fullstack create my_project --database postgresql
+
+# AI agent with RAG
+fastapi-fullstack create my_project \
+  --ai-framework pydantic_ai \
+  --llm-provider anthropic \
+  --rag --vector-store qdrant \
+  --database postgresql \
+  --task-queue celery \
+  --frontend nextjs
+
+# Full production setup (one flag)
+fastapi-fullstack create my_project --preset production --frontend nextjs
+
+# AI agent preset
+fastapi-fullstack create my_project --preset ai-agent --frontend nextjs
+```
+
+### List all options
+
+```bash
+fastapi-fullstack templates
+```
+
+---
+
+## What Gets Generated
+
+```
+my_project/
+├── backend/
+│   ├── app/
+│   │   ├── main.py                  # FastAPI app with lifespan
+│   │   ├── api/routes/v1/           # Auth, chat, RAG, users endpoints
+│   │   ├── core/                    # Config, security, middleware, CORS
+│   │   ├── db/                      # SQLAlchemy / MongoDB models & sessions
+│   │   ├── schemas/                 # Pydantic request/response models
+│   │   ├── repositories/            # Data access layer
+│   │   ├── services/                # Business logic
+│   │   ├── agents/                  # AI agent (your chosen framework)
+│   │   ├── rag/                     # RAG pipeline + sync connectors
+│   │   └── worker/                  # Background tasks (Celery/Taskiq/ARQ)
+│   ├── alembic/                     # DB migrations (PostgreSQL/SQLite)
+│   └── tests/                       # pytest test suite
+├── frontend/                        # Next.js 15 App Router (optional)
+│   └── src/
+│       ├── app/                     # Pages
+│       ├── components/              # UI components
+│       ├── hooks/                   # useChat, useWebSocket, useAuth
+│       └── stores/                  # Zustand state
+├── docker-compose.yml
+├── Makefile
+└── .env                             # Pre-filled environment file
+```
+
+---
+
+## Configuration Options
+
+### AI Frameworks
+
+| Framework | Notes |
+|-----------|-------|
+| `pydantic_ai` | Default. Logfire observability. Supports all 4 LLM providers. |
+| `langchain` | LangSmith observability |
+| `langgraph` | ReAct agent pattern. LangSmith observability |
+| `crewai` | Multi-agent crews |
+| `deepagents` | Agentic coding with human-in-the-loop |
+
+### LLM Providers
+
+| Provider | Default model | Embeddings |
+|----------|--------------|------------|
+| `openai` | gpt-4o-mini | text-embedding-3-small |
+| `anthropic` | claude-sonnet-4-5 | voyage-3 |
+| `google` | gemini-2.0-flash | gemini-embedding-2-preview (multimodal) |
+| `openrouter` | configurable | sentence-transformers (local) |
+
+### Databases & ORMs
+
+| Database | ORM support |
+|----------|------------|
+| PostgreSQL (async, asyncpg) | SQLAlchemy, SQLModel |
+| MongoDB (async, Motor) | ODM included |
+| SQLite (sync) | SQLAlchemy, SQLModel |
+
+### RAG Pipeline
+
+| Option | Choices |
+|--------|---------|
+| Vector store | Milvus, Qdrant, ChromaDB, pgvector |
+| PDF parser | PyMuPDF (local), LiteParse (local AI), LlamaParse (cloud, 130+ formats) |
+| Reranker | Cohere rerank-v3.5, cross-encoder (local) |
+| Document sources | Local upload, Google Drive sync, S3/MinIO sync |
+
+### Background Tasks
+
+| System | Notes |
+|--------|-------|
+| `celery` | Classic, battle-tested, requires Redis |
+| `taskiq` | Async-native, requires Redis |
+| `arq` | Lightweight, requires Redis |
+| `none` | FastAPI `BackgroundTasks` only |
+
+### Integrations
+
+| Feature | Flag |
+|---------|------|
+| Redis (caching + sessions) | `--redis` |
+| Response caching | `--caching` |
+| Rate limiting (memory or Redis) | `--rate-limiting` |
+| Admin panel (SQLAdmin) | `--admin-panel` |
+| S3/MinIO file storage | `--file-storage` |
+| Webhooks | `--webhooks` |
+| Google OAuth2 | `--oauth-google` |
+| Session management | `--session-management` |
+| Web search tool | included in agent |
+
+### Observability
+
+| Tool | When |
+|------|------|
+| Logfire | PydanticAI (FastAPI, DB, Redis, Celery, httpx instrumentation) |
+| LangSmith | LangChain, LangGraph, DeepAgents |
+| Sentry | `--sentry` |
+| Prometheus | `--prometheus` |
+| Celery Flower | auto-included with Celery in Docker |
+
+### Infrastructure
+
+| Option | Choices |
+|--------|---------|
+| Reverse proxy | Traefik (included or external), Nginx (included or external), none |
+| CI/CD | GitHub Actions, GitLab CI |
+| Kubernetes | `--kubernetes` (generates manifests) |
+| Python version | 3.11, 3.12, 3.13 |
+| Frontend brand color | blue, green, red, violet, orange |
+
+---
+
+## Generated API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/v1/auth/register` | Register new user |
+| POST | `/api/v1/auth/login` | Login, get JWT tokens |
+| POST | `/api/v1/auth/refresh` | Refresh access token |
+| GET | `/api/v1/chat/conversations` | List conversations |
+| POST | `/api/v1/chat/message` | Send message to AI agent |
+| WS | `/api/v1/chat/ws` | WebSocket streaming |
+| POST | `/api/v1/rag/upload` | Upload document |
+| GET | `/api/v1/rag/search` | Search knowledge base |
+| GET | `/api/v1/users/me` | Current user profile |
+
+Interactive docs: `/docs` (Swagger UI) · `/redoc`
+
+---
+
+## Running a Generated Project
+
+After generation, start everything with:
+
+```bash
+cd my_project
 docker-compose up -d
 ```
 
-### 4. Or run locally
-
-**Backend:**
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
-**Frontend:**
-```bash
-cd frontend
-bun install
-bun dev
-```
-
-### 5. Access the app
 | Service | URL |
 |---------|-----|
 | Frontend | http://localhost:3000 |
 | API | http://localhost:8000 |
 | API Docs | http://localhost:8000/docs |
 | Admin Panel | http://localhost:8000/admin |
+| Celery Flower | http://localhost:5555 |
 
 ---
 
-## 📁 Project Structure
-
-```
-ai-fullstack-platform/
-├── backend/
-│   ├── app/
-│   │   ├── main.py              # FastAPI app entry point
-│   │   ├── api/
-│   │   │   └── routes/v1/       # API endpoints (auth, chat, rag, users)
-│   │   ├── core/                # Config, security, middleware
-│   │   ├── db/                  # Database models (SQLAlchemy + MongoDB)
-│   │   ├── schemas/             # Pydantic request/response schemas
-│   │   ├── repositories/        # Data access layer
-│   │   ├── services/            # Business logic
-│   │   ├── agents/              # LangGraph AI agents
-│   │   ├── rag/                 # RAG pipeline (ingest, embed, search)
-│   │   └── worker/              # Celery background tasks
-│   ├── tests/                   # pytest test suite
-│   └── alembic/                 # DB migrations
-├── frontend/
-│   ├── src/
-│   │   ├── app/                 # Next.js App Router pages
-│   │   ├── components/          # React components
-│   │   ├── hooks/               # useChat, useWebSocket, useAuth
-│   │   └── stores/              # Zustand state stores
-│   └── e2e/                     # Playwright end-to-end tests
-├── docker-compose.yml
-├── Makefile
-└── README.md
-```
-
----
-
-## 🔌 API Overview
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/v1/auth/login` | Login and get JWT tokens |
-| POST | `/api/v1/auth/refresh` | Refresh access token |
-| GET | `/api/v1/chat/conversations` | List user conversations |
-| POST | `/api/v1/chat/message` | Send message to AI agent |
-| WS | `/api/v1/chat/ws` | WebSocket for streaming |
-| POST | `/api/v1/rag/upload` | Upload document to knowledge base |
-| GET | `/api/v1/rag/search` | Search knowledge base |
-| GET | `/api/v1/users/me` | Get current user profile |
-
-Full interactive docs available at `/docs` (Swagger) and `/redoc`.
-
----
-
-## 🧪 Running Tests
+## Development (this repo)
 
 ```bash
-# Backend tests
-cd backend
-pytest tests/ -v
+# Install
+uv sync
 
-# Frontend tests
-cd frontend
-bun test
+# Run tests
+uv run pytest
 
-# E2E tests
-bun playwright test
+# Run a single test
+uv run pytest tests/test_file.py::test_name -v
+
+# Lint and format
+uv run ruff check . --fix
+uv run ruff format .
+
+# Type check
+uv run ty check
 ```
 
 ---
 
-## 🐳 Docker Services
+## Screenshots
 
-```yaml
-services:
-  backend    # FastAPI app
-  frontend   # Next.js app
-  postgres   # Primary database
-  mongodb    # Document store
-  redis      # Cache + task queue
-  celery     # Background workers
-  qdrant     # Vector database
-  flower     # Celery monitoring UI
-  prometheus # Metrics collection
-```
-
-Start everything: `docker-compose up -d`
-
----
-
-## 📈 What I Learned Building This
-
-- **LangGraph agent patterns** — how to properly structure multi-step agents with tool use, memory, and human-in-the-loop checkpoints
-- **WebSocket streaming** with FastAPI and how to handle backpressure and reconnection on the frontend
-- **RAG pipeline design** — the difference between naive chunking and recursive character splitting, and why reranking matters
-- **Async Python** — SQLAlchemy async sessions, async Celery tasks, and how to avoid common pitfalls
-- **Production TypeScript patterns** — Zustand for state, React Query for server state, and proper error boundaries
+<table>
+  <tr>
+    <td align="center"><b>Logfire observability</b></td>
+    <td align="center"><b>LangSmith traces</b></td>
+  </tr>
+  <tr>
+    <td><img src="assets/logfire.png"></td>
+    <td><img src="assets/langsmith.png"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Celery Flower</b></td>
+    <td align="center"><b>RAG search</b></td>
+  </tr>
+  <tr>
+    <td><img src="assets/flower.png"></td>
+    <td><img src="assets/ragsearch.png"></td>
+  </tr>
+</table>
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions, issues and feature requests are welcome. Feel free to open an issue or submit a PR.
+Contributions, issues, and feature requests are welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) to get started.
 
 ---
 
-## 📄 License
+## License
 
 MIT License — see [LICENSE](./LICENSE) for details.
+
+---
+
+<div align="center">
+  <p>Built with ❤️ by <a href="https://github.com/omjaiswal45"><b>Om Jaiswal</b></a></p>
+  <p>
+    <a href="https://github.com/omjaiswal45">GitHub</a> •
+    <a href="https://linkedin.com/in/omjaiswal45">LinkedIn</a>
+  </p>
+</div>
